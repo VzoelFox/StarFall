@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Profile Card</h1>
+        <form id="profile-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="3" required></textarea>
+
+            <div id="links-container">
+                <label>Links</label>
+                <div class="link-item">
+                    <input type="text" name="linkTitle[]" placeholder="Link Title" required>
+                    <input type="url" name="linkUrl[]" placeholder="https://example.com" required>
+                </div>
+            </div>
+            <button type="button" id="add-link">Add Another Link</button>
+
+            <label for="theme">Theme Color</label>
+            <input type="color" id="theme" name="theme" value="#3498db">
+
+            <button type="submit">Generate Profile</button>
+        </form>
+        <div id="result" style="display:none;">
+            <h2>Your profile is ready!</h2>
+            <p>Share this link:</p>
+            <a id="profile-link" href="" target="_blank"></a>
+        </div>
+    </div>
+    <footer>
+        <p>Owner & Developer : Vzoel Fox's</p>
+        <p>Instagram : @vzoel.fox_s</p>
+    </footer>
+    <script src="/script.js"></script>
+</body>
+</html>

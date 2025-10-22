@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= profile.name %></title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: <%= profile.theme %>20;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .profile-container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .profile-header {
+            margin-bottom: 30px;
+        }
+        .profile-header h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .profile-header p {
+            font-size: 16px;
+            color: #555;
+        }
+        .profile-links a {
+            display: block;
+            background-color: <%= profile.theme %>;
+            color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <header class="profile-header">
+            <h1><%= profile.name %></h1>
+            <p><%= profile.description %></p>
+        </header>
+        <main class="profile-links">
+            <% profile.links.forEach(link => { %>
+                <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+            <% }) %>
+        </main>
+    </div>
+    <div class="watermark">
+        by yourdomain.com
+    </div>
+</body>
+</html>
