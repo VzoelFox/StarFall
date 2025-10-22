@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .links-list { list-style: none; padding: 0; }
+        .links-list li { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #eee; }
+        .links-list form { margin: 0; }
+        #template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; margin-top: 10px; margin-bottom: 20px; }
+        .template-thumbnail { cursor: pointer; border: 3px solid transparent; border-radius: 8px; overflow: hidden; position: relative; }
+        .template-thumbnail img { width: 100%; height: auto; display: block; }
+        .template-thumbnail.selected { border-color: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p>Welcome, <%= user.displayName %>. Manage your profile below.</p>
+
+        <% if (profile.profilePicture) { %>
+            <img src="/uploads/<%= profile.profilePicture %>" alt="Profile Picture" width="100" style="border-radius:50%;">
+        <% } %>
+
+        <form action="/dashboard/upload" method="POST" enctype="multipart/form-data">
+            <label for="profilePicture">Upload/Update Profile Picture</label>
+            <input type="file" name="profilePicture" id="profilePicture">
+            <button type="submit">Upload Image</button>
+        </form>
+
+        <hr>
+
+        <h3>Profile Details</h3>
+        <form action="/dashboard" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="<%= profile.username %>" required>
+            <small>Your profile will be available at /profile/<%= profile.username %></small>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="3" required><%= profile.description || '' %></textarea>
+
+            <div id="template-selection">
+                <label>Choose a Template</label>
+                <div id="template-grid">
+                    <% templates.forEach(template => { %>
+                        <div class="template-thumbnail <%= profile.template === template.id ? 'selected' : '' %>" data-template-id="<%= template.id %>">
+                            <img src="<%= template.background %>" alt="<%= template.name %>">
+                        </div>
+                    <% }) %>
+                </div>
+                <input type="hidden" name="template" id="selected-template" value="<%= profile.template || 'default' %>" required>
+            </div>
+
+            <label for="zodiac">Zodiac Sign</label>
+            <select id="zodiac" name="zodiac">
+                 <% const zodiacs = ["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"]; %>
+                <option value="">--Select Your Zodiac--</option>
+                <% zodiacs.forEach(z => { %>
+                    <option value="<%= z %>" <%= profile.zodiac === z ? 'selected' : '' %>><%= z.charAt(0).toUpperCase() + z.slice(1) %></option>
+                <% }) %>
+            </select>
+
+            <button type="submit">Update Profile</button>
+        </form>
+
+        <hr>
+
+        <h3>Manage Links</h3>
+        <ul class="links-list">
+            <% links.forEach(link => { %>
+                <li>
+                    <span><%= link.title %> -> <%= link.url %></span>
+                    <form action="/dashboard/links/delete/<%= link.id %>" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+
+        <form action="/dashboard/links/add" method="POST">
+            <h4>Add New Link</h4>
+            <input type="text" name="title" placeholder="Link Title" required>
+            <input type="url" name="url" placeholder="https://example.com" required>
+            <button type="submit">Add Link</button>
+        </form>
+
+        <br>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <script>
+        const templateGrid = document.getElementById('template-grid');
+        const selectedTemplateInput = document.getElementById('selected-template');
+
+        templateGrid.addEventListener('click', (e) => {
+            const thumb = e.target.closest('.template-thumbnail');
+            if (thumb) {
+                templateGrid.querySelectorAll('.template-thumbnail').forEach(t => t.classList.remove('selected'));
+                thumb.classList.add('selected');
+                selectedTemplateInput.value = thumb.dataset.templateId;
+            }
+        });
+    </script>
+</body>
+</html>

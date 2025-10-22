@@ -3,66 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Generator</title>
+    <title>Profile Card Generator</title>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .login-container {
+            text-align: center;
+        }
+        .login-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4285F4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .user-info a {
+            margin: 0 10px;
+            color: #3498db;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Create Your Profile Card</h1>
-        <form id="profile-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+        <h1>Welcome to Profile Card Generator</h1>
 
-            <label for="description">Description</label>
-            <textarea id="description" name="description" rows="3" required></textarea>
-
-            <div id="links-container">
-                <label>Links</label>
-                <div class="link-item">
-                    <input type="text" name="linkTitle[]" placeholder="Link Title" required>
-                    <input type="url" name="linkUrl[]" placeholder="https://example.com" required>
-                </div>
+        <% if (locals.user) { %>
+            <div class="user-info">
+                <p>Hello, <%= user.displayName %>!</p>
+                <a href="/dashboard">Go to Dashboard</a>
+                <a href="/logout">Logout</a>
             </div>
-            <button type="button" id="add-link">Add Another Link</button>
-
-            <label for="theme">Theme Color (Fallback)</label>
-            <input type="color" id="theme" name="theme" value="#3498db">
-
-            <div id="template-selection">
-                <label>Choose a Template</label>
-                <div id="template-grid"></div>
-                <input type="hidden" name="template" id="selected-template" value="default" required>
+        <% } else { %>
+            <div class="login-container">
+                <p>Create and manage your own personal profile card.</p>
+                <a href="/auth/google" class="login-btn">Login with Google</a>
             </div>
+        <% } %>
 
-            <label for="zodiac">Zodiac Sign</label>
-            <select id="zodiac" name="zodiac">
-                <option value="">--Select Your Zodiac--</option>
-                <option value="aries">Aries</option>
-                <option value="taurus">Taurus</option>
-                <option value="gemini">Gemini</option>
-                <option value="cancer">Cancer</option>
-                <option value="leo">Leo</option>
-                <option value="virgo">Virgo</option>
-                <option value="libra">Libra</option>
-                <option value="scorpio">Scorpio</option>
-                <option value="sagittarius">Sagittarius</option>
-                <option value="capricorn">Capricorn</option>
-                <option value="aquarius">Aquarius</option>
-                <option value="pisces">Pisces</option>
-            </select>
-
-            <button type="submit">Generate Profile</button>
-        </form>
-        <div id="result" style="display:none;">
-            <h2>Your profile is ready!</h2>
-            <p>Share this link:</p>
-            <a id="profile-link" href="" target="_blank"></a>
-        </div>
     </div>
-    <footer>
+     <footer>
         <p>Owner & Developer : Vzoel Fox's | <a href="/owner">About</a></p>
         <p>Instagram : @vzoel.fox_s</p>
     </footer>
-    <script src="/script.js"></script>
 </body>
 </html>

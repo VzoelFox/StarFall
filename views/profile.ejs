@@ -75,7 +75,10 @@
 <body>
     <div class="profile-container">
         <header class="profile-header">
-            <h1><%= profile.name %></h1>
+            <% if (profile.profilePicture) { %>
+                <img src="/uploads/<%= profile.profilePicture %>" alt="Profile Picture" style="width:100px; height:100px; border-radius:50%;">
+            <% } %>
+            <h1><%= user.displayName %></h1>
             <p><%= profile.description %></p>
             <% if (locals.dailyHoroscope) { %>
                 <div class="horoscope">
