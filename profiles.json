@@ -1,0 +1,13 @@
+{
+  "dAHgz4skcMzRWjc8onHJiU": {
+    "name": "Test User",
+    "description": "Testing the API",
+    "theme": "#ff0000",
+    "links": [
+      {
+        "title": "Test Link",
+        "url": "https://example.com"
+      }
+    ]
+  }
+}
