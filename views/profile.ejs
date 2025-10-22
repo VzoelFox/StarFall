@@ -7,8 +7,10 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: <%= profile.theme %>20; /* Lighter theme color */
-            color: #333;
+            background-image: url('<%= template.background %>');
+            background-size: cover;
+            background-position: center;
+            color: <%= template.fontColor || '#333' %>;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -18,6 +20,9 @@
             max-width: 400px;
             width: 100%;
             text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 15px;
         }
         .profile-header {
             margin-bottom: 30px;
@@ -28,12 +33,18 @@
         }
         .profile-header p {
             font-size: 16px;
-            color: #555;
+        }
+        .horoscope {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-style: italic;
         }
         .profile-links a {
             display: block;
-            background-color: <%= profile.theme %>;
-            color: white;
+            background-color: <%= template.buttonBgColor || profile.theme %>;
+            color: <%= template.buttonFontColor || 'white' %>;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
@@ -66,6 +77,11 @@
         <header class="profile-header">
             <h1><%= profile.name %></h1>
             <p><%= profile.description %></p>
+            <% if (locals.dailyHoroscope) { %>
+                <div class="horoscope">
+                    <strong>Daily Horoscope:</strong> <%= dailyHoroscope %>
+                </div>
+            <% } %>
         </header>
         <main class="profile-links">
             <% profile.links.forEach(link => { %>

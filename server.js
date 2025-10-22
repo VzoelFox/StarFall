@@ -39,24 +39,54 @@ app.post('/api/create', (req, res) => {
 
 app.get('/profile/:id', (req, res) => {
     const profiles = readProfiles();
-    const profile = profiles[req.params.id];
-    if (profile) {
-        res.render('profile', { profile, req }); // Pass req to construct download URL
+    const profileData = profiles[req.params.id];
+
+    if (profileData) {
+        const templates = JSON.parse(fs.readFileSync('./templates.json'));
+        const template = templates.find(t => t.id === profileData.template) || templates.find(t => t.id === 'default');
+
+        let dailyHoroscope = null;
+        if (profileData.zodiac) {
+            const horoscopes = JSON.parse(fs.readFileSync('./horoscopes.json'));
+            const zodiacHoroscopes = horoscopes[profileData.zodiac.toLowerCase()];
+            if (zodiacHoroscopes) {
+                dailyHoroscope = zodiacHoroscopes[Math.floor(Math.random() * zodiacHoroscopes.length)];
+            }
+        }
+
+        res.render('profile', { profile: profileData, template, dailyHoroscope, req });
     } else {
         res.status(404).send('Profile not found');
     }
 });
 
+app.get('/api/templates', (req, res) => {
+    fs.readFile('./templates.json', (err, data) => {
+        if (err) {
+            res.status(500).send('Could not load templates');
+            return;
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
+app.get('/owner', (req, res) => {
+    res.render('owner');
+});
+
 app.get('/profile/:id/download', (req, res) => {
     const profiles = readProfiles();
-    const profile = profiles[req.params.id];
-    if (profile) {
-        res.render('downloadable_profile', { profile }, (err, html) => {
+    const profileData = profiles[req.params.id];
+    if (profileData) {
+        const templates = JSON.parse(fs.readFileSync('./templates.json'));
+        const template = templates.find(t => t.id === profileData.template) || templates.find(t => t.id === 'default');
+
+        res.render('downloadable_profile', { profile: profileData, template }, (err, html) => {
             if (err) {
                 res.status(500).send('Error rendering profile');
                 return;
             }
-            res.setHeader('Content-Disposition', `attachment; filename="${profile.name.replace(/\s/g, '_')}_profile.html"`);
+            res.setHeader('Content-Disposition', `attachment; filename="${profileData.name.replace(/\s/g, '_')}_profile.html"`);
             res.setHeader('Content-Type', 'text/html');
             res.send(html);
         });

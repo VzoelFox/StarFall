@@ -30,7 +30,8 @@ form label {
 }
 
 form input,
-form textarea {
+form textarea,
+form select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -84,4 +85,43 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+#template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.template-thumbnail {
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s;
+}
+
+.template-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.template-thumbnail.selected {
+    border-color: #3498db;
+}
+
+.template-thumbnail .name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
 }

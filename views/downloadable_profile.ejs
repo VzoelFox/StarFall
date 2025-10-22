@@ -7,8 +7,10 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: <%= profile.theme %>20;
-            color: #333;
+            background-image: url('<%= template.background %>');
+            background-size: cover;
+            background-position: center;
+            color: <%= template.fontColor || '#333' %>;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,6 +21,9 @@
             max-width: 400px;
             width: 100%;
             text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 15px;
         }
         .profile-header {
             margin-bottom: 30px;
@@ -29,12 +34,11 @@
         }
         .profile-header p {
             font-size: 16px;
-            color: #555;
         }
         .profile-links a {
             display: block;
-            background-color: <%= profile.theme %>;
-            color: white;
+            background-color: <%= template.buttonBgColor || profile.theme %>;
+            color: <%= template.buttonFontColor || 'white' %>;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;

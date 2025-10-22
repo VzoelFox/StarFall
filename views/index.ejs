@@ -25,8 +25,31 @@
             </div>
             <button type="button" id="add-link">Add Another Link</button>
 
-            <label for="theme">Theme Color</label>
+            <label for="theme">Theme Color (Fallback)</label>
             <input type="color" id="theme" name="theme" value="#3498db">
+
+            <div id="template-selection">
+                <label>Choose a Template</label>
+                <div id="template-grid"></div>
+                <input type="hidden" name="template" id="selected-template" value="default" required>
+            </div>
+
+            <label for="zodiac">Zodiac Sign</label>
+            <select id="zodiac" name="zodiac">
+                <option value="">--Select Your Zodiac--</option>
+                <option value="aries">Aries</option>
+                <option value="taurus">Taurus</option>
+                <option value="gemini">Gemini</option>
+                <option value="cancer">Cancer</option>
+                <option value="leo">Leo</option>
+                <option value="virgo">Virgo</option>
+                <option value="libra">Libra</option>
+                <option value="scorpio">Scorpio</option>
+                <option value="sagittarius">Sagittarius</option>
+                <option value="capricorn">Capricorn</option>
+                <option value="aquarius">Aquarius</option>
+                <option value="pisces">Pisces</option>
+            </select>
 
             <button type="submit">Generate Profile</button>
         </form>
@@ -37,7 +60,7 @@
         </div>
     </div>
     <footer>
-        <p>Owner & Developer : Vzoel Fox's</p>
+        <p>Owner & Developer : Vzoel Fox's | <a href="/owner">About</a></p>
         <p>Instagram : @vzoel.fox_s</p>
     </footer>
     <script src="/script.js"></script>

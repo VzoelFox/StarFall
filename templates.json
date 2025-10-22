@@ -1,0 +1,98 @@
+[
+    {
+        "id": "default",
+        "name": "Default Blue",
+        "background": "/templates/backgrounds/default.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#3498db",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "sunset",
+        "name": "Sunset Orange",
+        "background": "/templates/backgrounds/sunset.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#e67e22",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "forest",
+        "name": "Forest Green",
+        "background": "/templates/backgrounds/forest.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#27ae60",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "dark",
+        "name": "Midnight Dark",
+        "background": "/templates/backgrounds/dark.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#34495e",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "lavender",
+        "name": "Lavender",
+        "background": "/templates/backgrounds/lavender.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#8e44ad",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "rose",
+        "name": "Rose Gold",
+        "background": "/templates/backgrounds/rose.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#c0392b",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "ocean",
+        "name": "Ocean Blue",
+        "background": "/templates/backgrounds/ocean.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#2980b9",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "sunny",
+        "name": "Sunny Yellow",
+        "background": "/templates/backgrounds/sunny.svg",
+        "fontColor": "#333333",
+        "buttonBgColor": "#f1c40f",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "mint",
+        "name": "Minty",
+        "background": "/templates/backgrounds/mint.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#16a085",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "candy",
+        "name": "Candy Pink",
+        "background": "/templates/backgrounds/candy.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#e91e63",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "sand",
+        "name": "Sandy",
+        "background": "/templates/backgrounds/sand.svg",
+        "fontColor": "#333333",
+        "buttonBgColor": "#f39c12",
+        "buttonFontColor": "#FFFFFF"
+    },
+    {
+        "id": "sky",
+        "name": "Sky Blue",
+        "background": "/templates/backgrounds/sky.svg",
+        "fontColor": "#FFFFFF",
+        "buttonBgColor": "#00a8ff",
+        "buttonFontColor": "#FFFFFF"
+    }
+]
